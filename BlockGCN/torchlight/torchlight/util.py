@@ -13,7 +13,13 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
-from torchpack.runner.hooks import PaviLogger
+try:
+    from torchpack.runner.hooks import PaviLogger
+except ImportError:
+    class PaviLogger(object):
+        def __init__(self, *args, **kwargs): pass
+        def connect(self, *args, **kwargs): pass
+        def log(self, *args, **kwargs): pass
 
 
 class IO():
